@@ -8,7 +8,7 @@ A self-hosted web application that collects, archives, and displays expired and 
 
 ## Why Action Archive
 
-BigFix Root Server accumulates thousands of expired actions over time. As the action history grows, the BigFix console becomes slower and harder to navigate, and historical action data is eventually pruned. **Action Archive** captures every expired or stopped action — along with its targets, components, scripts, and relevance — into a dedicated PostgreSQL database, giving you a permanent, searchable, exportable record of everything BigFix has ever run in your environment.
+BigFix Root Server accumulates thousands of expired actions over time. As the action history grows, the BigFix console becomes slower and harder to navigate, and historical action data is eventually pruned. **Action Archive** captures every expired or stopped action along with its targets, components, scripts, and relevance into a dedicated PostgreSQL database, giving you a permanent, searchable, exportable record of everything BigFix has ever run in your environment.
 
 It is designed to run alongside your BigFix infrastructure as a self-hosted appliance on a single Ubuntu server. There are no external dependencies, no cloud services, and no telemetry. The application speaks to your BigFix Root Server's REST API, archives what it finds, and presents it through a web interface.
 
