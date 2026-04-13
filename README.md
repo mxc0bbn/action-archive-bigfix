@@ -64,8 +64,8 @@ It is designed to run alongside your BigFix infrastructure as a self-hosted appl
 
 Both guides are included as PDFs in this repository and inside the release tarball:
 
-- **[Installation Guide](docs/ActionArchive-Installation-Guide-v1.0.0.pdf)** — Step-by-step installation, prerequisites, BigFix operator setup, SSL certificates, and post-install verification
-- **[Administrator Guide](docs/ActionArchive-Admin-Guide-v1.0.0.pdf)** — Day-to-day operations, user management, settings reference, backup and restore, troubleshooting, and security guidance
+- **[Installation Guide](docs/ActionArchive-Installation-Guide-v1.0.1.pdf)** — Step-by-step installation, prerequisites, BigFix operator setup, SSL certificates, and post-install verification
+- **[Administrator Guide](docs/ActionArchive-Admin-Guide-v1.0.1.pdf)** — Day-to-day operations, user management, settings reference, backup and restore, troubleshooting, and security guidance
 
 ---
 
@@ -82,10 +82,10 @@ Both guides are included as PDFs in this repository and inside the release tarba
 
 ```bash
 # Download the latest release
-wget https://github.com/mxc0bbn/action-archive-bigfix/releases/latest/download/action-archive-v1.0.0.tar.gz
+wget https://github.com/mxc0bbn/action-archive-bigfix/releases/latest/download/action-archive-v1.0.1.tar.gz
 
 # Extract
-tar -xzf action-archive-v1.0.0.tar.gz
+tar -xzf action-archive-v1.0.1.tar.gz
 cd action-archive
 
 # Run the installer
@@ -96,7 +96,7 @@ The installer will prompt for the admin account, BigFix connection details, and 
 
 After installation, browse to `https://<your-server-ip>` and sign in with the admin credentials you provided during install.
 
-For full step-by-step instructions, prerequisites, and troubleshooting, see the **[Installation Guide PDF](docs/ActionArchive-Installation-Guide-v1.0.0.pdf)**.
+For full step-by-step instructions, prerequisites, and troubleshooting, see the **[Installation Guide PDF](docs/ActionArchive-Installation-Guide-v1.0.1.pdf)**.
 
 ---
 
@@ -132,10 +132,10 @@ Action Archive ships with security as a default posture, not an afterthought:
 
 The latest release is available on the [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases). Each release includes:
 
-- **`action-archive-v1.0.0.tar.gz`** — Complete application tarball with installer, source artifacts, and documentation
+- **`action-archive-v1.0.1.tar.gz`** — Complete application tarball with installer, source artifacts, and documentation
 - **`action-archive-audit-agent-v1.0.0.zip`** — Optional Windows Audit Agent installer
-- **`ActionArchive-Installation-Guide-v1.0.0.pdf`** — Installation Guide (also included inside the tarball)
-- **`ActionArchive-Admin-Guide-v1.0.0.pdf`** — Administrator Guide (also included inside the tarball)
+- **`ActionArchive-Installation-Guide-v1.0.1.pdf`** — Installation Guide (also included inside the tarball)
+- **`ActionArchive-Admin-Guide-v1.0.1.pdf`** — Administrator Guide (also included inside the tarball)
 
 ---
 
