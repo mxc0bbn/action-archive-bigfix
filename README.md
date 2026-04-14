@@ -1,5 +1,7 @@
 # Action Archive for BigFix Platform
 
+![Total downloads](https://img.shields.io/github/downloads/mxc0bbn/action-archive-bigfix/total)
+
 A self-hosted web application that collects, archives, and displays expired and stopped actions from a BigFix endpoint management server. Provides a searchable historical record with full action metadata, target details, scripts, relevance, and compliance reporting.
 
 ![Dashboard](docs/screenshots/01-dashboard-dark.png)
