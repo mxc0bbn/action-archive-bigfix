@@ -69,6 +69,8 @@ Both guides are included as PDFs in this repository and inside the release tarba
 - **[Installation Guide](docs/ActionArchive-Installation-Guide.pdf)** — Step-by-step installation, prerequisites, BigFix operator setup, SSL certificates, and post-install verification
 - **[Administrator Guide](docs/ActionArchive-Admin-Guide.pdf)** — Day-to-day operations, user management, settings reference, backup and restore, troubleshooting, and security guidance
 
+See [CHANGELOG.md](CHANGELOG.md) for a release history summary and [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) for the contributors who have helped shape the project.
+
 ---
 
 ## Quick Start
