@@ -6,6 +6,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes — upgrade instructions, assets, checksums — see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.1.1] — 2026-04-16
+
+### Added
+- Targeted email notifications: event emails go to the initiating user, not all recipients.
+- Console state reconciliation: each collection flags archived actions no longer present in the BigFix Console.
+- Console filter dropdown on the Actions list (Any / Still in Console / Removed from Console).
+- Multi-Action Group child handling: child actions cannot be individually deleted; delete the parent group instead.
+
+### Fixed
+- Completed collections now send an email notification (previously only failures did).
+- Single-column Session Relevance responses parsed correctly when `<Tuple>` wrappers are absent.
+
 ## [v1.1.0] — 2026-04-16
 
 ### Added
@@ -30,6 +42,7 @@ For full release notes — upgrade instructions, assets, checksums — see the
 
 Initial public release.
 
+[v1.1.1]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.1
 [v1.1.0]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.0
 [v1.0.2]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.0.2
 [v1.0.1]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.0.1
