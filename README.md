@@ -80,7 +80,8 @@ See [CHANGELOG.md](CHANGELOG.md) for a release history summary and [ACKNOWLEDGME
 - Root or sudo access on the target server
 - Network access from the server to your BigFix Root Server's REST API
 - A dedicated BigFix **Master Operator** account for the collector
-- Minimum 2 GB RAM and 10 GB free disk space
+- 4 GB RAM, 20 GB free disk space (minimum)
+- 2 vCPU minimum, 4 vCPU recommended — x86-64 (amd64)
 
 ### Install
 
