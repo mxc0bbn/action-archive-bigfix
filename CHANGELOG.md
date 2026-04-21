@@ -6,6 +6,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes — upgrade instructions, assets, checksums — see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.1.2] — 2026-04-21
+
+### Added
+- OpenAPI 3.x specification (`docs/openapi.json`) bundled with the install and published in the repository, for programmatic API discovery and client generation.
+- Installer prompt for BigFix authentication method (password or API token).
+
+### Fixed
+- Installer now correctly deploys the `docs/` directory so integrity verification succeeds on first run.
+- Installer banner displays the current release version.
+- Admin Guide Appendix A rewritten as a pointer to the OpenAPI specification; authentication mechanisms described accurately.
+
 ## [v1.1.1] — 2026-04-16
 
 ### Added
@@ -42,6 +53,7 @@ For full release notes — upgrade instructions, assets, checksums — see the
 
 Initial public release.
 
+[v1.1.2]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.2
 [v1.1.1]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.1
 [v1.1.0]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.0
 [v1.0.2]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.0.2
