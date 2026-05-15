@@ -137,9 +137,9 @@ Action Archive ships with security as a default posture, not an afterthought:
 
 The latest release is available on the [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases). Each release provides:
 
-- **Application tarball** with the installer, the compiled application, the bundled Windows Audit Agent installer, and the OpenAPI specification. A stable `action-archive-latest.tar.gz` asset is published alongside the versioned tarball so download links never change.
+- **Application tarball** containing the installer, the compiled application, the bundled Windows Audit Agent installer, the OpenAPI specification, and the Installation and Administrator guide PDFs. A stable `action-archive-latest.tar.gz` asset is published alongside the versioned tarball so download links never change.
 
-The Installation Guide and Administrator Guide (PDF) are maintained in [`docs/`](docs/) in this repository.
+The Installation Guide and Administrator Guide (PDF) are also maintained in [`docs/`](docs/) in this repository for browsing without extracting the tarball.
 
 ---
 
