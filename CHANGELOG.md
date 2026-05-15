@@ -6,6 +6,19 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes — upgrade instructions, assets, checksums — see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.1.3] - 2026-05-15
+
+### Added
+- Performance page under Administration > Logs: at-a-glance health gauges for the system, web server, database, and collection pipeline, with detail panels, a network throughput chart, and an in-place explanation of every metric.
+- Application version shown on the login screen and in the header.
+- Guided PostgreSQL tuning during install, sized to the server's detected memory, CPU count, and storage type. Optional and declinable; existing tuning is preserved on upgrade.
+
+### Fixed
+- Installer now places the bundled BigFix Audit Agent package, so the download card appears on a fresh install (regressed in v1.1.2).
+- Installer now installs the certificate helper and its sudoers rule, so SSL certificate upload works on a fresh install (regressed in v1.1.2).
+- Installer upgrade mode restored: re-running over an existing install preserves configuration, credentials, database, SSL certificate, and the admin account, and reports the installed version before you choose (present in v1.1.0, lost in v1.1.2).
+- Database health score recalibrated for Action Archive's normal query patterns.
+
 ## [v1.1.2] — 2026-04-21
 
 ### Added
@@ -53,6 +66,7 @@ For full release notes — upgrade instructions, assets, checksums — see the
 
 Initial public release.
 
+[v1.1.3]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.3
 [v1.1.2]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.2
 [v1.1.1]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.1
 [v1.1.0]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.0
