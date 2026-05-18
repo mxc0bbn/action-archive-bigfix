@@ -6,6 +6,19 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes — upgrade instructions, assets, checksums — see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.1.4] - 2026-05-18
+
+### Added
+- Pre-install prerequisite check: the installer verifies the tools it needs and its network access, lists every missing item and connectivity problem at once, and offers to install the missing packages before continuing.
+- BigFix connection is verified during installation (reachability and authentication) before the install proceeds, with an option to re-enter the details, continue anyway, or abort.
+
+### Changed
+- Web admin and BigFix operator password prompts now show masked feedback and require confirmation.
+- Admin email is optional at installation and can be set later in the web interface.
+
+### Fixed
+- Passwords containing special characters, including a single quote, are handled correctly during installation.
+
 ## [v1.1.3] - 2026-05-15
 
 ### Added
@@ -66,6 +79,7 @@ For full release notes — upgrade instructions, assets, checksums — see the
 
 Initial public release.
 
+[v1.1.4]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.4
 [v1.1.3]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.3
 [v1.1.2]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.2
 [v1.1.1]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.1
