@@ -11,6 +11,9 @@ environments and report what they found.
   end-to-end validation against a realistic environment has caught issues
   that would otherwise have reached wider rollouts.
 
+- **Deekshitha Ravindranath rai** — made installation improvement suggestions
+  to the 1.1.3 version. Discovered some missing packages (i.e. curl) may break
+  the installation flow.
 ---
 
 If you run a pre-release build and want to be listed here, open a discussion
