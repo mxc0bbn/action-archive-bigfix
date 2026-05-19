@@ -6,12 +6,12 @@ environments and report what they found.
 
 ## Beta Testers
 
-- **Pawan Kumar** — surfaced the collection failure that led to v1.0.1 and
+- **Pawan Kumar** - surfaced the collection failure that led to v1.0.1 and
   the certificate-upload packaging defect that led to v1.0.2. His continued
   end-to-end validation against a realistic environment has caught issues
   that would otherwise have reached wider rollouts.
 
-- **Deekshitha Ravindranath rai** — made installation improvement suggestions
+- **Deekshitha Ravindranath rai** - made installation improvement suggestions
   to the 1.1.3 version. Discovered some missing packages (i.e. curl) may break
   the installation flow.
 ---
