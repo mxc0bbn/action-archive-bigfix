@@ -160,6 +160,8 @@ A dedicated BigFix **Master Operator** account is required for complete action c
 
 This software is **free to use and freely distributable** in its original, unmodified form. Modification for commercial sale or distribution is not permitted. See the [LICENSE](LICENSE) file for the complete terms.
 
+Upstream attribution for open-source components is in [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md).
+
 ---
 
 ## Support
