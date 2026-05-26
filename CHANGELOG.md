@@ -6,6 +6,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes — upgrade instructions, assets, checksums — see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.2.0] - 2026-05-26
+
+### Added
+- Server Migration: export the application database, encrypted BigFix and SMTP credentials, and configuration to a single passphrase-protected file (.aa-mig), and import it on a different Action Archive server. Supports moving a deployment to new hardware or to a newer Ubuntu release without losing data or having to rebuild configuration by hand.
+- Ubuntu Server 26.04 LTS support. The same installer package works on both supported releases; it detects the host's Python version and selects the matching compiled modules automatically.
+
+### Changed
+- Minimum supported Ubuntu version is now 24.04 LTS. Support for 22.04 has been removed.
+
+### Fixed
+- Web UI Backup download and Restore actions no longer fail silently. They previously returned an authentication error caused by a token-key mismatch.
+
 ## [v1.1.4] - 2026-05-18
 
 ### Added

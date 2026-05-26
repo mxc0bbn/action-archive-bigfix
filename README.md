@@ -76,7 +76,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a release history summary and [ACKNOWLEDGME
 ## Quick Start
 
 ### Prerequisites
-- Ubuntu Server 22.04 LTS or 24.04 LTS (amd64)
+- Ubuntu Server 24.04 LTS or 26.04 LTS (amd64)
 - Root or sudo access on the target server
 - Network access from the server to your BigFix Root Server's REST API
 - A dedicated BigFix **Master Operator** account for the collector
@@ -115,7 +115,7 @@ For full step-by-step instructions, prerequisites, and troubleshooting, see the 
 | Reverse Proxy | Nginx with TLS 1.2+ |
 | Application Server | Uvicorn (single worker, bound to localhost) |
 | Process Management | systemd |
-| Operating System | Ubuntu Server 22.04 / 24.04 LTS |
+| Operating System | Ubuntu Server 24.04 / 26.04 LTS |
 
 The application binaries are compiled to native shared libraries (Cython) for performance and to protect against casual modification. The frontend is minified for production. A SHA-256 manifest verifies the integrity of all distributed files at startup.
 
@@ -148,7 +148,7 @@ The Installation Guide and Administrator Guide (PDF) are also maintained in [`do
 | Component | Tested With |
 |---|---|
 | BigFix Platform | Tested against current BigFix Root Server v11.0.5.203/204 REST API |
-| Ubuntu Server | 22.04 LTS, 24.04 LTS |
+| Ubuntu Server | 24.04 LTS, 26.04 LTS |
 | PostgreSQL | 16 (installed automatically by the installer) |
 | Browsers | Chrome, Edge, Firefox |
 
