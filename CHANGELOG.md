@@ -6,6 +6,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes — upgrade instructions, assets, checksums — see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.2.2] - 2026-06-01
+
+### Security
+- The login form submits over POST and is bound to its client-side handler, so account credentials are never placed in a URL even if the page's scripts fail to load.
+- HTTP access logs record the request path without its query string.
+
+### Changed
+- Email test and send failures now include the mail server's own response text, making a misconfigured SMTP account far easier to diagnose.
+
+### Fixed
+- The "Password Reset Requests" toggle under Administration > System Settings > Notifications now controls whether the self-service password reset email is sent. When disabled, users who request a reset receive the same generic confirmation, no email is sent, and the request is recorded in the audit log. With the toggle disabled, self-service reset is effectively turned off and an administrator resets passwords from User Management. The toggle defaults to Enabled.
+
 ## [v1.2.1] - 2026-05-28
 
 ### Added
@@ -113,6 +125,9 @@ For full release notes — upgrade instructions, assets, checksums — see the
 
 Initial public release.
 
+[v1.2.2]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.2.2
+[v1.2.1]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.2.1
+[v1.2.0]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.2.0
 [v1.1.4]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.4
 [v1.1.3]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.3
 [v1.1.2]: https://github.com/mxc0bbn/action-archive-bigfix/releases/tag/v1.1.2
