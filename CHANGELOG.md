@@ -6,6 +6,28 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes — upgrade instructions, assets, checksums — see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.2.1] - 2026-05-28
+
+### Added
+- New `APP_BASE_URL` setting in `.env`. Populated automatically by the installer from the server's primary IP address. Used to build outbound password reset email links so they point at the canonical server URL even when the inbound HTTP request carries a forged `Host` header. Edit this in `/opt/bigfix-archive/config/.env` if the server is normally accessed at a different hostname.
+- New `/api/admin/health` endpoint that returns the detailed health view (BigFix server URL, hostname, OS, Python version, database size, memory). Requires administrator authentication.
+- Archived Actions list: click anywhere on a row to open the action; filters and the text search apply automatically as you change them.
+- Page layout caps content width on wide displays for more comfortable reading and consistent column alignment.
+- BigFix Server Trust section under Administration > System Settings > Connections. Captures the BigFix server's TLS certificate, shows its subject, issuer, validity, and SHA-256 fingerprint for review, and adds it to the system trust store on confirmation. Removes the need to run `openssl` and `update-ca-certificates` by hand when enabling "Verify SSL Certificate = Yes" against a BigFix server with an internal CA.
+- Password Changed notification: the user receives an email whenever their password is changed, regardless of the path (self-service reset via emailed link, logged-in password change, forced change after admin reset, or administrator-initiated reset from User Management). Includes time, source IP, and method. Toggle under Administration > System Settings > Notifications; users can also opt out for their own account from My Account > Notification Preferences.
+
+### Changed
+- `/api/health` (unauthenticated) now returns only the overall status indicator, application version, and build date. The detailed system information that was previously included on this endpoint is available on the new `/api/admin/health` endpoint.
+- The cert-management helper used by the SSL Certificate upload feature is installed at `/usr/local/sbin/bigfix-archive-install-cert`, owned by root, with the application user only able to invoke it via the existing sudoers rule. Upgrades from v1.2.0 remove the prior `/opt/bigfix-archive/scripts/install-cert.sh` automatically.
+
+### Fixed
+- Password reset email links are built from `APP_BASE_URL` instead of the inbound `Host` and `X-Forwarded-Proto` headers.
+- CSV and Excel exports of actions, targets, audit log, application log, collection log, and PostgreSQL log sanitize cell values that would otherwise be interpreted as spreadsheet formulas when opened in Excel or LibreOffice Calc.
+- Constant-time comparison is used for the provenance verification token check.
+- Outbound HTTPS to the BigFix server now honors CAs added to the system trust store via `update-ca-certificates`, so "Verify SSL Certificate = Yes" works against BigFix servers using an internal CA.
+- "Verify SSL Certificate = Yes" works against BigFix servers that present only a leaf certificate (the common configuration), on both Ubuntu 24.04 and 26.04. Previously, only 26.04 accepted leaf-only chains by default.
+- Save BigFix Settings refuses an empty or scheme-less Server URL and returns a clear error, preventing a corrupted setting that would make every subsequent Test Connection report a misleading protocol error.
+
 ## [v1.2.0] - 2026-05-26
 
 ### Added

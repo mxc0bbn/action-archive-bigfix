@@ -54,6 +54,9 @@ It is designed to run alongside your BigFix infrastructure as a self-hosted appl
 ### Audit Log
 ![Audit Log](docs/screenshots/06-audit-log.png)
 
+### Performance
+![Performance](docs/screenshots/06a-performance.png)
+
 ### Light Theme
 ![Dashboard — light theme](docs/screenshots/07-dashboard-light.png)
 
