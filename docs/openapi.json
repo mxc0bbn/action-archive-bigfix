@@ -3,7 +3,7 @@
   "info": {
     "title": "Action Archive for BigFix Platform \u2014 REST API",
     "description": "REST API for the Action Archive for BigFix Platform.\n\n## Authentication\n\nTwo authentication schemes are supported:\n\n1. **Bearer JWT** (`Authorization: Bearer <token>`). The primary mechanism. Obtain a token from `POST /api/auth/login`, then include it on every subsequent request. Used by the web UI and recommended for all programmatic integration.\n2. **`X-API-Key` header**. Exclusive to the two Audit Agent endpoints (`GET /api/admin/deleted-action-ids` and `POST /api/admin/deleted-actions`). Keys are created and managed under Administration \u2192 System Settings \u2192 API Keys.\n\n## Unauthenticated endpoints\n\nThe following endpoints do not require authentication: `/api/health`, `/api/auth/login`, `/api/auth/login-config`, `/api/auth/password-policy`, `/api/auth/forgot-password`, `/api/auth/reset-password`.",
-    "version": "1.1.2"
+    "version": "1.2.2"
   },
   "paths": {
     "/api/auth/login-config": {
@@ -3599,6 +3599,210 @@
         }
       }
     },
+    "/api/admin/bigfix-trust/status": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Bigfix Trust Status",
+        "description": "Return whether a custom BigFix CA cert is currently trusted.",
+        "operationId": "bigfix_trust_status_api_admin_bigfix_trust_status_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/bigfix-trust/capture": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Bigfix Trust Capture",
+        "description": "Connect to the configured BigFix server and return the presented leaf\ncert. No filesystem writes. Used to preview what would be trusted.",
+        "operationId": "bigfix_trust_capture_api_admin_bigfix_trust_capture_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/bigfix-trust/install": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Bigfix Trust Install",
+        "description": "Install the captured PEM into the system trust store.",
+        "operationId": "bigfix_trust_install_api_admin_bigfix_trust_install_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true,
+                "title": "Payload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/bigfix-trust": {
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Bigfix Trust Remove",
+        "description": "Remove a previously trusted BigFix CA cert from the system store.",
+        "operationId": "bigfix_trust_remove_api_admin_bigfix_trust_delete",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/admin/connections": {
       "get": {
         "tags": [
@@ -4667,6 +4871,122 @@
         }
       }
     },
+    "/api/admin/migration/export": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Migration Export",
+        "description": "Build and stream a .aa-mig migration bundle for moving to another server.",
+        "operationId": "migration_export_api_admin_migration_export_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MigrationExportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/migration/import": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Migration Import",
+        "description": "Decrypt an .aa-mig bundle, restore the database, and re-encrypt creds into local .env.",
+        "operationId": "migration_import_api_admin_migration_import_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_migration_import_api_admin_migration_import_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/admin/collection-log/export/csv": {
       "get": {
         "tags": [
@@ -5019,6 +5339,112 @@
               "minimum": 10,
               "default": 2000,
               "title": "Lines"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/perf/snapshot": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Perf Snapshot",
+        "description": "Real-time performance snapshot for the Performance admin tab.\n\nReturns system, nginx, postgres, and collection metrics plus the\nfour 0-100 health scores. Cached for ~3 seconds internally so\nmultiple admins polling simultaneously do not multiply the DB\nquery cost.",
+        "operationId": "perf_snapshot_api_admin_perf_snapshot_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/perf/network": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Perf Network",
+        "description": "Historical per-interface network throughput for the NETWORK\nchart on the Performance admin tab.\n\nReturns the contents of `network_metrics` for the requested rolling\nwindow (default: last 24h). Rates are stored as bytes/packets per\nSECOND so the client can plot them directly without delta math.",
+        "operationId": "perf_network_api_admin_perf_network_get",
+        "parameters": [
+          {
+            "name": "minutes",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1440,
+              "title": "Minutes"
             }
           },
           {
@@ -6038,6 +6464,25 @@
         ],
         "title": "BigFixConnectionSchema"
       },
+      "Body_migration_import_api_admin_migration_import_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "title": "File"
+          },
+          "passphrase": {
+            "type": "string",
+            "title": "Passphrase"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file",
+          "passphrase"
+        ],
+        "title": "Body_migration_import_api_admin_migration_import_post"
+      },
       "Body_upload_certificate_api_admin_certificate_upload_post": {
         "properties": {
           "certificate": {
@@ -6528,6 +6973,24 @@
           "password"
         ],
         "title": "LoginSchema"
+      },
+      "MigrationExportRequest": {
+        "properties": {
+          "passphrase": {
+            "type": "string",
+            "title": "Passphrase"
+          },
+          "confirm_passphrase": {
+            "type": "string",
+            "title": "Confirm Passphrase"
+          }
+        },
+        "type": "object",
+        "required": [
+          "passphrase",
+          "confirm_passphrase"
+        ],
+        "title": "MigrationExportRequest"
       },
       "NotificationPrefSchema": {
         "properties": {
