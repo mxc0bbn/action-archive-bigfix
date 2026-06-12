@@ -6,6 +6,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes (upgrade instructions, assets, checksums) see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.3.0] - 2026-06-12
+
+### Security
+- Hardened the web interface against cross-site scripting by escaping dynamic values before they are rendered.
+
+### Changed
+- The Windows Audit Agent now stores its API key encrypted with Windows DPAPI, bound to the machine, instead of plain text in config.ini. An existing cleartext key is migrated automatically on first run, and the agent installer reminds you to save your API key before upgrading since it can no longer be read from config.ini afterward.
+- Times throughout the interface are shown in the server's timezone with a zone label, so the collection schedule and run history agree regardless of the viewer's browser timezone.
+
 ## [v1.2.2] - 2026-06-01
 
 ### Security
