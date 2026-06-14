@@ -6,6 +6,21 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes (upgrade instructions, assets, checksums) see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.4.0] - 2026-06-14
+
+### Added
+- Server Migration exports are now digitally signed and verified on import. A new "Allow unsigned (legacy) migration imports" setting, disabled by default, lets you import older unsigned bundles when needed.
+- API keys can be permanently deleted from Administration > System Settings > API Keys, in addition to revoke and reactivate.
+- The installer reports when dependency versions differ from the set this release was tested with and lets you install the tested versions, continue with the latest, or cancel.
+
+### Changed
+- The web interface now uses self-hosted fonts for fully offline operation and consistent rendering.
+- Action tables size their columns to their contents instead of wrapping or overflowing.
+- The installer stops the service before updating files and waits for a clean startup, removing a spurious failure message during upgrades.
+
+### Security
+- Strengthened the web interface Content Security Policy.
+
 ## [v1.3.0] - 2026-06-12
 
 ### Security
