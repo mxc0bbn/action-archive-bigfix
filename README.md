@@ -94,7 +94,7 @@ wget https://github.com/mxc0bbn/action-archive-bigfix/releases/latest/download/a
 
 # Extract
 tar -xzf action-archive-latest.tar.gz
-cd action-archive-bigfix-v1.4.0
+cd action-archive-bigfix-v1.5.0
 
 # Run the installer
 sudo bash install.sh

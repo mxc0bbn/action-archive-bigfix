@@ -14,6 +14,12 @@ environments and report what they found.
 - **Deekshitha Ravindranath rai** - made installation improvement suggestions
   to the 1.1.3 version. Discovered some missing packages (i.e. curl) may break
   the installation flow.
+
+- **Chris Britz** - recommended the Stop Collection button. API calls during
+  long-running manual collections may affect the performance of the Root
+  Server. This allows an administrator to gracefully stop the collection so
+  that it can be restarted at a later date.
+
 ---
 
 If you run a pre-release build and want to be listed here, open a discussion

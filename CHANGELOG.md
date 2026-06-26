@@ -6,6 +6,22 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes (upgrade instructions, assets, checksums) see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.5.0] - 2026-06-26
+
+### Added
+- Stop Collection button. An administrator can gracefully cancel a collection that is in progress from the dashboard. Work already collected is kept, and the next collection resumes the remainder.
+- The About page now reports filesystem usage for the database and web server locations in addition to the application directory.
+- Hovering a per-computer action status shows a short description of what that status means.
+
+### Changed
+- Collections complete faster while capturing the same data.
+- The installer no longer depends on sudo for its database setup, so it runs on hardened hosts where root cannot use sudo or where sudo is restricted.
+- Upgrades now apply any pending database updates automatically.
+
+### Fixed
+- A collection that captured data but encountered a per-action error is now reported as "Completed with errors" rather than "Failed". A collection stopped by an administrator is reported as "Cancelled".
+- A collection left running by an unexpected service stop is now cleared automatically when the service restarts, so it no longer blocks the next collection or requires manual database cleanup.
+
 ## [v1.4.0] - 2026-06-14
 
 ### Added
