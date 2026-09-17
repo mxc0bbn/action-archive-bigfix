@@ -4,6 +4,8 @@
 
 A self-hosted web application that collects, archives, and displays expired and stopped actions from a BigFix endpoint management server. Provides a searchable historical record with full action metadata, target details, scripts, relevance, and compliance reporting.
 
+> **Compatibility:** Action Archive is tested and supported with BigFix Platform through version 11.0.6.137.
+
 ![Dashboard](docs/screenshots/01-dashboard-dark.png)
 
 ---
@@ -150,7 +152,7 @@ The Installation Guide and Administrator Guide (PDF) are also maintained in [`do
 
 | Component | Tested With |
 |---|---|
-| BigFix Platform | Tested against current BigFix Root Server v11.0.5.203/204 REST API |
+| BigFix Platform | Tested and supported through version 11.0.6.137 (Root Server REST API) |
 | Ubuntu Server | 24.04 LTS, 26.04 LTS |
 | PostgreSQL | 16 (installed automatically by the installer) |
 | Browsers | Chrome, Edge, Firefox |
