@@ -6,6 +6,33 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 For full release notes (upgrade instructions, assets, checksums) see the
 [Releases page](https://github.com/mxc0bbn/action-archive-bigfix/releases).
 
+## [v1.6.0] - 2026-11-19
+
+### Added
+- Filters sidebar on the Actions page. It can be collapsed to give the table more room, and the choice is remembered.
+- Columns menu to show, hide, and reorder the Actions table columns, with a one-click reset.
+- Server Status light in the header, showing the database, BigFix server, and disk space checks.
+- The address bar remembers the current tab, filters, sort order, and page, so refresh, bookmarks, and Back return to the same view.
+- Active filters are shown as chips above the table and can be removed with one click.
+
+### Changed
+- Paging has First and Last buttons and a "Showing 1 to 50 of 2,300" count.
+- User Management highlights your own account and shows a Created column.
+- The side menu on long pages such as System Settings stays in view while scrolling.
+- Esc closes dialogs and menus.
+- Empty tables explain why and offer to clear the filters.
+- Administrators can no longer remove their own admin role or deactivate their own account.
+
+### Fixed
+- The idle timeout starts immediately after sign-in, applies to every user, and a changed value reaches sessions that are already open.
+- Password expiry warnings appear for every user.
+- Exports respect the Console filter.
+- New installations start correctly with current library versions.
+- CSV export of the Nginx and PostgreSQL logs no longer fails.
+- An invalid filter value in a request returns a clear error.
+- Large migration files (up to 500 MB) are no longer rejected on upload.
+- Removed two options that had no effect: "Max Concurrent Sessions Per User" and the personal "Password Reset Requests" email preference.
+
 ## [v1.5.0] - 2026-06-26
 
 ### Added

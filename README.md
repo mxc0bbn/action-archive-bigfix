@@ -20,27 +20,27 @@ It is designed to run alongside your BigFix infrastructure as a self-hosted appl
 
 ## Key Features
 
-- **Automated Collection** — Scheduled archiving of expired and stopped BigFix actions with complete metadata
-- **Action Browser** — Search, filter, sort, and export archived actions with full target details
-- **Dashboard** — Real-time statistics with counters and collection status
-- **Role-Based Access Control** — Multiple roles with configurable scopes
-- **Session Management** — Configurable timeouts, idle detection, and concurrent session limits
-- **Security Hardening** — Password policies, account lockout, IP rate limiting, login banners, encrypted credential storage
-- **Audit Log** — Full audit trail of administrative actions with CSV and PDF export
-- **Backup & Restore** — One-click database backup and restore from the web interface
-- **Email Notifications** — Per-user notification preferences for security and collection events
-- **BigFix Console Cleanup** — Optional automatic deletion of archived actions from the BigFix console
-- **Health Monitoring** — System health endpoint with database, BigFix, disk, and memory status
-- **API Key Management** — SHA-256 hashed API keys for programmatic access
-- **Dark and Light Themes** — Dark and Light theme toggle
-- **Windows Audit Agent** — Optional companion agent for endpoint audit data collection
+- **Automated Collection:** Scheduled archiving of expired and stopped BigFix actions with complete metadata
+- **Action Browser:** Search, filter, sort, and export archived actions with full target details; collapsible filters sidebar and a column picker
+- **Dashboard:** Real-time statistics with counters and collection status
+- **Role-Based Access Control:** Multiple roles with configurable scopes
+- **Session Management:** Configurable session timeouts and idle detection with a warning before sign-out
+- **Security Hardening:** Password policies, account lockout, IP rate limiting, login banners, encrypted credential storage
+- **Audit Log:** Full audit trail of administrative actions with CSV and PDF export
+- **Backup & Restore:** One-click database backup and restore from the web interface
+- **Email Notifications:** Per-user notification preferences for security and collection events
+- **BigFix Console Cleanup:** Optional automatic deletion of archived actions from the BigFix console
+- **Health Monitoring:** Server Status light in the header, plus a system health endpoint with database, BigFix, disk, and memory status
+- **API Key Management:** SHA-256 hashed API keys for programmatic access
+- **Dark and Light Themes:** Dark and Light theme toggle
+- **Windows Audit Agent:** Optional companion agent for endpoint audit data collection
 
 ---
 
 ## Screenshots
 
 ### Dashboard
-![Dashboard — dark theme](docs/screenshots/01-dashboard-dark.png)
+![Dashboard, dark theme](docs/screenshots/01-dashboard-dark.png)
 
 ### Action Browser
 ![Action Browser](docs/screenshots/03-action-browser.png)
@@ -60,7 +60,7 @@ It is designed to run alongside your BigFix infrastructure as a self-hosted appl
 ![Performance](docs/screenshots/06a-performance.png)
 
 ### Light Theme
-![Dashboard — light theme](docs/screenshots/07-dashboard-light.png)
+![Dashboard, light theme](docs/screenshots/07-dashboard-light.png)
 
 ### Login
 ![Login](docs/screenshots/02-login.png)
@@ -71,8 +71,8 @@ It is designed to run alongside your BigFix infrastructure as a self-hosted appl
 
 Both guides are included as PDFs in this repository and inside the release tarball:
 
-- **[Installation Guide](docs/ActionArchive-Installation-Guide.pdf)** — Step-by-step installation, prerequisites, BigFix operator setup, SSL certificates, and post-install verification
-- **[Administrator Guide](docs/ActionArchive-Admin-Guide.pdf)** — Day-to-day operations, user management, settings reference, backup and restore, troubleshooting, and security guidance
+- **[Installation Guide](docs/ActionArchive-Installation-Guide.pdf)**: Step-by-step installation, prerequisites, BigFix operator setup, SSL certificates, and post-install verification
+- **[Administrator Guide](docs/ActionArchive-Admin-Guide.pdf)**: Day-to-day operations, user management, settings reference, backup and restore, troubleshooting, and security guidance
 
 See [CHANGELOG.md](CHANGELOG.md) for a release history summary and [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) for the contributors who have helped shape the project.
 
@@ -86,7 +86,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a release history summary and [ACKNOWLEDGME
 - Network access from the server to your BigFix Root Server's REST API
 - A dedicated BigFix **Master Operator** account for the collector
 - 4 GB RAM, 20 GB free disk space (minimum)
-- 2 vCPU minimum, 4 vCPU recommended — x86-64 (amd64)
+- 2 vCPU minimum, 4 vCPU recommended, x86-64 (amd64)
 
 ### Install
 
@@ -96,7 +96,7 @@ wget https://github.com/mxc0bbn/action-archive-bigfix/releases/latest/download/a
 
 # Extract
 tar -xzf action-archive-latest.tar.gz
-cd action-archive-bigfix-v1.5.0
+cd action-archive-bigfix-v1.6.0
 
 # Run the installer
 sudo bash install.sh
@@ -114,8 +114,8 @@ For full step-by-step instructions, prerequisites, and troubleshooting, see the 
 
 | Layer | Technology |
 |---|---|
-| Backend | Python 3.12, FastAPI, SQLAlchemy |
-| Database | PostgreSQL 16 |
+| Backend | Python 3.12 / 3.14, FastAPI, SQLAlchemy |
+| Database | PostgreSQL 16 (Ubuntu 24.04) or 18 (Ubuntu 26.04) |
 | Frontend | Vanilla HTML, CSS, JavaScript (no framework) |
 | Reverse Proxy | Nginx with TLS 1.2+ |
 | Application Server | Uvicorn (single worker, bound to localhost) |
@@ -154,10 +154,18 @@ The Installation Guide and Administrator Guide (PDF) are also maintained in [`do
 |---|---|
 | BigFix Platform | Tested and supported through version 11.0.6.137 (Root Server REST API) |
 | Ubuntu Server | 24.04 LTS, 26.04 LTS |
-| PostgreSQL | 16 (installed automatically by the installer) |
+| PostgreSQL | 16 on Ubuntu 24.04, 18 on Ubuntu 26.04 (installed automatically from the Ubuntu repositories) |
 | Browsers | Chrome, Edge, Firefox |
 
 A dedicated BigFix **Master Operator** account is required for complete action collection. See the Installation Guide for the rationale and setup details.
+
+### PostgreSQL and Nginx updates
+
+The installer does not bundle PostgreSQL or Nginx. It installs the packages provided by your Ubuntu release, so a new installation receives the current, security-patched versions. On an existing installation, apply Ubuntu updates regularly to receive PostgreSQL and Nginx security fixes:
+
+```bash
+sudo apt update && sudo apt upgrade
+```
 
 ---
 

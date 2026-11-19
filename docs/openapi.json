@@ -3,7 +3,7 @@
   "info": {
     "title": "Action Archive for BigFix Platform \u2014 REST API",
     "description": "REST API for the Action Archive for BigFix Platform.\n\n## Authentication\n\nTwo authentication schemes are supported:\n\n1. **Bearer JWT** (`Authorization: Bearer <token>`). The primary mechanism. Obtain a token from `POST /api/auth/login`, then include it on every subsequent request. Used by the web UI and recommended for all programmatic integration.\n2. **`X-API-Key` header**. Exclusive to the two Audit Agent endpoints (`GET /api/admin/deleted-action-ids` and `POST /api/admin/deleted-actions`). Keys are created and managed under Administration \u2192 System Settings \u2192 API Keys.\n\n## Unauthenticated endpoints\n\nThe following endpoints do not require authentication: `/api/health`, `/api/auth/login`, `/api/auth/login-config`, `/api/auth/password-policy`, `/api/auth/forgot-password`, `/api/auth/reset-password`.",
-    "version": "1.4.0"
+    "version": "1.6.0"
   },
   "paths": {
     "/api/auth/login-config": {
@@ -102,6 +102,54 @@
                 "schema": {
                   "$ref": "#/components/schemas/UserSchema"
                 }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/session-config": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get Session Config",
+        "description": "Session and password-expiry settings the UI needs for every signed-in\nuser (idle timeout, idle warning, password expiry warning). The full\nsettings list is admin-only, so non-admin sessions read these here.",
+        "operationId": "get_session_config_api_auth_session_config_get",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           },
@@ -749,7 +797,8 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^(single|multi_action_group|baseline)$"
                 },
                 {
                   "type": "null"
@@ -765,7 +814,8 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^(open|expired|stopped|deleted)$"
                 },
                 {
                   "type": "null"
@@ -918,7 +968,8 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^(single|multi_action_group|baseline)$"
                 },
                 {
                   "type": "null"
@@ -934,7 +985,8 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^(open|expired|stopped|deleted)$"
                 },
                 {
                   "type": "null"
@@ -973,6 +1025,23 @@
                 }
               ],
               "title": "Issuer"
+            }
+          },
+          {
+            "name": "console_status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^(present|removed)$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Console Status"
             }
           },
           {
@@ -1102,7 +1171,8 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^(single|multi_action_group|baseline)$"
                 },
                 {
                   "type": "null"
@@ -1118,7 +1188,8 @@
             "schema": {
               "anyOf": [
                 {
-                  "type": "string"
+                  "type": "string",
+                  "pattern": "^(open|expired|stopped|deleted)$"
                 },
                 {
                   "type": "null"
@@ -1157,6 +1228,23 @@
                 }
               ],
               "title": "Issuer"
+            }
+          },
+          {
+            "name": "console_status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^(present|removed)$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Console Status"
             }
           },
           {
@@ -1638,6 +1726,54 @@
         "summary": "Trigger Collection",
         "description": "Trigger a new collection run (admin only).",
         "operationId": "trigger_collection_api_admin_collections_run_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/collections/stop": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Stop Collection",
+        "description": "Request that the currently running collection stop (admin only).\n\nSignals the in-process worker to halt at its next safe checkpoint. The run\nis then marked 'cancelled' (a clean terminal state), any data already\ncollected is preserved, and the next collection resumes the remainder via\nthe incremental filter.",
+        "operationId": "stop_collection_api_admin_collections_stop_post",
         "parameters": [
           {
             "name": "authorization",
